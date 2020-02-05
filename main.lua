@@ -93,9 +93,7 @@ function octant(origin, move, grow, range)
           tile.checked = 1
           tile.light = visibility * (1 - math.sqrt(scanForward * scanForward + scanSide * scanSide) / range)
         end
-        if (tile.light > 0.25) then
-          tile.discovered = 1
-        end
+        tile.discovered = math.max(math.min(tile.light, 0.25) / 0.25, tile.discovered)
         if (tile.wall > 0) then
           shadowinsert(shadowmap, coverage)
         end
